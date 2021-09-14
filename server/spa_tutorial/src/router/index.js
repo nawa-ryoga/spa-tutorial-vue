@@ -1,21 +1,21 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import TopComponent from '@/components/TopComponent'
 import TaskListComponent from '@/components/TaskListComponent'
 
 Vue.use(Router)
 
-export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'top-component',
-      component: TopComponent
-    },
-    {
-      path: '/tasks',
-      name: 'task.list',
-      component: TaskListComponent
-    }
-  ]
+const routes = [
+  {
+    path: '/tasks',
+    name: 'task.list',
+    component: TaskListComponent
+  }
+]
+
+const router = new Router({
+  mode: 'history',
+  base: process.env.BASE_URL,
+  routes
 })
+
+export default router

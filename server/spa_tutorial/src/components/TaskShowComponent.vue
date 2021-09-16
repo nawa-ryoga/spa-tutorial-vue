@@ -33,22 +33,22 @@
 export default {
   props: {
     taskId: Number
+  },
+  data () {
+    return {
+      task: {}
+    }
+  },
+  methods: {
+    getTask () {
+      this.axios.get('http://127.0.0.1:8080/api/tasks/' + this.taskId)
+        .then((res) => {
+          this.task = res.data
+        })
+    }
+  },
+  mounted () {
+    this.getTask()
   }
-  // data () {
-  //   return {
-  //     task: {}
-  //   }
-  // },
-  // methods: {
-  //   getTask () {
-  //     axios.get('/api/tasks/' + this.taskId)
-  //       .then((res) => {
-  //         this.task = res.data;
-  //       });
-  //   }
-  // },
-  // mounted () {
-  //   this.getTask();
-  // }
 }
 </script>

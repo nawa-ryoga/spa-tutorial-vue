@@ -4,10 +4,16 @@ import TaskListComponent from '@/components/TaskListComponent'
 import TaskCreateComponent from '@/components/TaskCreateComponent'
 import TaskShowComponent from '@/components/TaskShowComponent'
 import TaskEditComponent from '@/components/TaskEditComponent'
+import TopComponent from '@/components/TopComponent'
 
 Vue.use(Router)
 
 const routes = [
+  {
+    path: '/',
+    name: 'top',
+    component: TopComponent
+  },
   {
     path: '/tasks',
     name: 'task.list',

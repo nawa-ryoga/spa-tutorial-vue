@@ -13,7 +13,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr v-for="(task, index) in tasks" :key="index">
+        <tr v-for="(task, index) in tasks" :key="index">
           <th scope="row">{{task.id}}</th>
           <td>{{ task.title }}</td>
           <td>{{ task.content }}</td>
@@ -31,7 +31,7 @@
           <td>
             <button class="btn btn-danger" v-on:click="deleteTask(task.id)">DELETE</button>
           </td>
-        </tr> -->
+        </tr>
       </tbody>
     </table>
   </div>
@@ -43,23 +43,23 @@ export default {
     return {
       tasks: []
     }
-  }// ,
-  // methods: { // APIを叩いてタスク一覧を取得。成功時dataオプションへ登録
-  //   getTasks() {
-  //     axios.get('/api/tasks/')
-  //       .then((res) => {
-  //         this.tasks = res.data;
-  //       });
-  //   },
-  //   deleteTask(id) {
-  //     axios.delete('/api/tasks/' + id)
-  //       .then((res) => {
-  //         this.getTasks();
-  //       });
-  //   }
-  // },
-  // mounted() { // DOM生成直後メソッドを実行
-  //   this.getTasks();
-  // }
+  },
+  methods: { // APIを叩いてタスク一覧を取得。成功時dataオプションへ登録
+    getTasks () {
+      this.axios.get('http://127.0.0.1:8080/api/tasks/')
+        .then((res) => {
+          this.tasks = res.data
+        })
+    },
+    deleteTask (id) {
+      this.axios.delete('http://127.0.0.1:8080/api/tasks/' + id)
+        .then((res) => {
+          this.getTasks()
+        })
+    }
+  },
+  mounted () { // DOM生成直後メソッドを実行
+    this.getTasks()
+  }
 }
 </script>

@@ -2,8 +2,7 @@
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-sm-6">
-        <!-- <form v-on:submit.prevent="submit"> -->
-          <form>
+        <form v-on:submit.prevent="submit">
           <div class="form-group row">
             <label for="id" class="col-sm-3 col-form-label">ID</label>
             <input type="text" class="col-sm-9 form-control-plaintext" readonly id="id" v-model="task.id">
@@ -22,7 +21,6 @@
           </div>
           <button type="submit" class="btn btn-primary">SUBMIT</button>
           </form>
-        <!-- </form> -->
       </div>
     </div>
   </div>
@@ -32,28 +30,28 @@
 export default {
   props: {
     taskId: Number
+  },
+  data () {
+    return {
+      task: {}
+    }
+  },
+  methods: {
+    getTask () {
+      this.axios.get('http://127.0.0.1:8080/api/tasks/' + this.taskId)
+        .then((res) => {
+          this.task = res.data
+        })
+    },
+    submit () {
+      this.axios.put('http://127.0.0.1:8080/api/tasks/' + this.taskId, this.task)
+        .then((res) => {
+          this.$router.push({name: 'task.list'})
+        })
+    }
+  },
+  mounted () {
+    this.getTask()
   }
-  // data() {
-  //   return {
-  //     task: {}
-  //   }
-  // },
-  // methods: {
-  //   getTask() {
-  //     axios.get('/api/tasks/' + this.taskId)
-  //       .then((res) => {
-  //         this.task = res.data
-  //       });
-  //   },
-  //   submit() {
-  //     axios.put('/api/tasks/' + this.taskId, this.task)
-  //       .then((res) => {
-  //         this.$router.push({name: 'task.list'})
-  //       });
-  //   }
-  // },
-  // mounted() {
-  //   this.getTask()
-  // }
 }
 </script>

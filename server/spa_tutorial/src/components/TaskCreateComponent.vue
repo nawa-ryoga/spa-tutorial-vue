@@ -1,0 +1,44 @@
+<template>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-6">
+                <!-- <form v-on:submit.prevent="submit"> 送信時submitメソッドを実行 -->
+                    <form>
+                    <!-- v-modelでデータとバインディングをすることで、入力時点でscriptのtaskが更新される -->
+                    <div class="form-group row">
+                        <label for="title" class="col-sm-3 col-form-label">Title</label>
+                        <input type="text" class="col-sm-9 form-control" id="title">
+                        <!-- <input type="text" class="col-sm-9 form-control" id="title" v-model="task.title"> -->
+                    </div>
+                    <div class="form-group row">
+                        <label for="content" class="col-sm-3 col-form-label">Content</label>
+                        <input type="text" class="col-sm-9 form-control" id="content">
+                    </div>
+                    <div class="form-group row">
+                        <label for="person-in-charge" class="col-sm-3 col-form-label">Person In Charge</label>
+                        <input type="text" class="col-sm-9 form-control" id="person-in-charge">
+                    </div>
+                    <button type="submit" class="btn btn-primary">SUBMIT</button>
+                </form>
+            </div>
+        </div>
+  </div>
+</template>
+
+<script>
+export default {
+  // data() {
+  //   return {
+  //       task: {}
+  //   }
+  // },
+  // methods: {
+  //   submit() {
+  //     axios.post('/api/tasks', this.task)
+  //       .then((res) => {
+  //         this.$router.push({name: 'task.list'}); // タスク一覧ページへリダイレクト
+  //       });
+  //     }
+  // }
+}
+</script>
